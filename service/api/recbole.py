@@ -49,8 +49,12 @@ class RecBoleRecommender:
             topn_item_ids = [self.dataset.iid_to_item_id[iid] for iid in topn_item_indices_sampled]
 
             return topn_item_ids
+    
+    def recommendation(self, user_id: int, N_recs: int = 10):
+        df = pd.DataFrame({"user_id": [user_id], "item_id": [user_id]})
+        return self.recommend_items_to_user(df, N_recs=N_recs).item_id.to_list()
 
-        return []
+
 
 # Example of usage:
 # recommender = RecBoleRecommender(your_dataset_instance)
